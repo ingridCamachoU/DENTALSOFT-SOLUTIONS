@@ -1,0 +1,17 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.app h1 {
+  margin-bottom: 10px;
+}
+
+.app p {
+  margin-top: 0;
+}

@@ -1,0 +1,56 @@
+:root {
+  /* COLORES  */
+
+  --color-primary: #2f80ed;
+  --color-primary-dark: #1d5fc4;
+  --color-secondary: #27c2d1;
+
+  --color-background: #f5f8fa;
+  --color-white: #ffffff;
+
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-text-light: #ffffff;
+
+  --color-border: #dde3ea;
+
+  --color-error: #dc2626;
+  --color-success: #16a34a;
+
+  /* DEGRADADOS */
+
+  --gradient-brand: linear-gradient(
+    135deg,
+    rgba(49, 180, 192, 0.948),
+    rgba(47, 129, 237, 0.876)
+  );
+
+  /* TIPOGRAFÍA */
+
+  --font-size-small: 14px;
+  --font-size-normal: 15px;
+  --font-size-medium: 18px;
+  --font-size-large: 24px;
+  --font-size-title: 32px;
+
+  /* BORDES */
+
+  --radius-small: 6px;
+  --radius-medium: 10px;
+  --radius-large: 16px;
+
+  /* SOMBRAS */
+
+  --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  /* ESPACIADO */
+
+  --spacing-xs: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xl: 32px;
+
+  --consultorio: url('/frontend/src/assets/consultorio.jpg');
+}

@@ -1,0 +1,312 @@
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-background);
+}
+
+/* PANEL IZQUIERDO */
+
+.login-brand {
+  width: 50%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  padding: 55px 80px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: var(--color-text-light);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* LOGO */
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.brand-logo img {
+  width: 400px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
+}
+
+/* CONTENIDO */
+
+.brand-content {
+  max-width: 500px;
+  margin-top: 130px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.brand-content h2 {
+  margin: 0 0 80px;
+  font-size: var(--font-size-title);
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+/* BENEFICIOS */
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-medium);
+  margin-bottom: 70px;
+  text-align: left;
+}
+.benefit-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-medium);
+}
+.benefit h3 {
+  margin: 0 0 6px;
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+.benefit p {
+  margin: 0;
+  max-width: 320px;
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* PANEL DERECHO */
+
+.login-panel {
+  width: 50%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+  background: var(--color-white);
+}
+
+/* CAJA LOGIN */
+
+.login-box {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px 45px;
+  box-sizing: border-box;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-card);
+}
+
+/* TITULO */
+
+.login-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+.login-title h2 {
+  margin: 0 0 8px;
+  color: var(--color-text);
+  font-size: var(--font-size-title);
+  font-weight: 700;
+}
+.login-title p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+/* CAMPOS */
+
+.input-group {
+  margin-bottom: 22px;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+.input-group input {
+  width: 100%;
+  height: 43px;
+  padding: 0 13px;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-white);
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  outline: none;
+  transition: 0.2s;
+}
+.input-group input:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(39, 194, 209, 0.12);
+}
+.input-group input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* BOTON */
+
+.login-button {
+  width: 100%;
+  height: 43px;
+  margin-top: 5px;
+  border: none;
+  border-radius: var(--radius-small);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-normal);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.login-button:hover {
+  background: var(--color-primary-dark);
+}
+.login-button:active {
+  transform: scale(0.99);
+}
+
+/* ENLACES */
+
+.forgot-password {
+  text-align: center;
+  margin-top: 17px;
+}
+.forgot-password a,
+.register-text a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+}
+.forgot-password a:hover,
+.register-text a:hover {
+  text-decoration: underline;
+}
+.register-text {
+  padding-top: 25px;
+  margin-top: 25px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+/* PANTALLAS MEDIANAS */
+
+@media (max-width: 1200px) {
+  .login-brand {
+    padding: 45px 55px;
+  }
+  .brand-logo img {
+    width: 190px;
+  }
+  .brand-content {
+    margin-top: 80px;
+  }
+  .brand-content h2 {
+    font-size: var(--font-size-large);
+  }
+  .benefit h3 {
+    font-size: var(--font-size-medium);
+  }
+  .benefit p {
+    font-size: var(--font-size-small);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+  }
+  .login-brand,
+  .login-panel {
+    width: 100%;
+  }
+  .login-brand {
+    min-height: auto;
+    padding: 40px 30px 45px;
+  }
+  .brand-logo img {
+    width: 180px;
+  }
+  .brand-content {
+    margin-top: 55px;
+    max-width: 600px;
+  }
+  .brand-content h2 {
+    font-size: var(--font-size-large);
+  }
+  .login-panel {
+    min-height: auto;
+    padding: 40px 20px;
+  }
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+  .login-brand {
+    padding: 30px 22px 35px;
+  }
+  .brand-logo img {
+    width: 155px;
+  }
+  .brand-content {
+    margin-top: 40px;
+  }
+  .brand-content h2 {
+    font-size: var(--font-size-medium);
+    margin-bottom: 30px;
+  }
+  .benefit {
+    gap: var(--spacing-small);
+    margin-bottom: 20px;
+  }
+  .benefit-icon {
+    width: 38px;
+    height: 38px;
+    font-size: var(--font-size-small);
+  }
+  .benefit h3 {
+    font-size: var(--font-size-medium);
+  }
+  .benefit p {
+    font-size: var(--font-size-small);
+  }
+  .login-panel {
+    padding: 30px 15px 40px;
+  }
+  .login-box {
+    padding: 30px 22px;
+  }
+}
