@@ -1,9 +1,34 @@
+import { useState } from 'react'
 import './Login.css'
 import logoDentalsoft from '../assets/logo-dentalsoft.png'
 import consultorio from '../assets/consultorio.jpg'
+import api from '../services/api'
 import { CalendarDays, Users, BarChart3 } from 'lucide-react'
 
-function Login() {
+function Login({ onLogin }) {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      const response = await api.post('/api/token/', {
+        username,
+        password,
+      })
+
+      console.log('Login exitoso:', response.data)
+
+      localStorage.setItem('access_token', response.data.access)
+      localStorage.setItem('refresh_token', response.data.refresh)
+
+      onLogin()
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error)
+    }
+  }
+
   return (
     <div className="login-page">
       {/* Panel izquierdo */}
@@ -68,17 +93,29 @@ function Login() {
             <p>Inicia sesión en tu cuenta</p>
           </div>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label htmlFor="correo">Correo electrónico</label>
 
-              <input id="correo" type="email" placeholder="tu@email.com" />
+              <input
+                id="correo"
+
+                placeholder="tu@email.com"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
             </div>
 
             <div className="input-group">
               <label htmlFor="password">Contraseña</label>
 
-              <input id="password" type="password" placeholder="••••••••••••" />
+              <input
+                id="password"
+                type="password"
+                placeholder="••••••••••••"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
             </div>
 
             <button type="submit" className="login-button">
