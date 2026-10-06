@@ -493,3 +493,145 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.informacion-paciente {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.dato-paciente {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px 16px;
+  background: #f8fafc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+}
+
+.dato-paciente span {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.dato-paciente strong {
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.dato-paciente-full {
+  grid-column: 1 / -1;
+}
+
+.texto-activo {
+  color: var(--color-success) !important;
+}
+
+.texto-inactivo {
+  color: var(--color-error) !important;
+}
+
+.btn-ver-paciente {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-white);
+  color: var(--color-primary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-ver-paciente:hover {
+  background: #f0f7ff;
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 650px) {
+  .informacion-paciente {
+    grid-template-columns: 1fr;
+  }
+
+  .dato-paciente-full {
+    grid-column: auto;
+  }
+}
+
+.acciones-paciente {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-editar-paciente {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-editar-paciente:hover {
+  background: #f8fafc;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@media (max-width: 700px) {
+  .acciones-paciente {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.btn-estado-paciente {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: var(--radius-small);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-desactivar {
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  background: rgba(220, 38, 38, 0.06);
+  color: var(--color-error);
+}
+
+.btn-desactivar:hover {
+  background: rgba(220, 38, 38, 0.12);
+  border-color: rgba(220, 38, 38, 0.4);
+}
+
+.btn-activar {
+  border: 1px solid rgba(22, 163, 74, 0.25);
+  background: rgba(22, 163, 74, 0.06);
+  color: var(--color-success);
+}
+
+.btn-activar:hover {
+  background: rgba(22, 163, 74, 0.12);
+  border-color: rgba(22, 163, 74, 0.4);
+}

@@ -6,7 +6,7 @@ import api from '../services/api'
 import { CalendarDays, Users, BarChart3 } from 'lucide-react'
 
 function Login({ onLogin }) {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (event) => {
@@ -14,7 +14,7 @@ function Login({ onLogin }) {
 
     try {
       const response = await api.post('/api/token/', {
-        username,
+        email,
         password,
       })
 
@@ -22,6 +22,10 @@ function Login({ onLogin }) {
 
       localStorage.setItem('access_token', response.data.access)
       localStorage.setItem('refresh_token', response.data.refresh)
+      localStorage.setItem(
+        'session_expires_at',
+        String(Date.now() + 8 * 60 * 60 * 1000),
+      )
 
       onLogin()
     } catch (error) {
@@ -99,10 +103,10 @@ function Login({ onLogin }) {
 
               <input
                 id="correo"
-
+                type="email"
                 placeholder="tu@email.com"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
 

@@ -12,9 +12,10 @@ import {
 } from 'lucide-react'
 
 import Pacientes from './Pacientes'
+import Historias from './Historias'
 import './Dashboard.css'
 
-function Dashboard() {
+function Dashboard({ onLogout }) {
   const [seccion, setSeccion] = useState('inicio')
 
   return (
@@ -47,7 +48,10 @@ function Dashboard() {
             <span>Citas</span>
           </button>
 
-          <button>
+          <button
+            className={seccion === 'historias' ? 'active' : ''}
+            onClick={() => setSeccion('historias')}
+          >
             <ClipboardList size={20} />
             <span>Historias clínicas</span>
           </button>
@@ -74,7 +78,7 @@ function Dashboard() {
             <span>Configuración</span>
           </button>
 
-          <button>
+          <button onClick={onLogout}>
             <LogOut size={20} />
             <span>Cerrar sesión</span>
           </button>
@@ -155,9 +159,11 @@ function Dashboard() {
               </p>
             </section>
           </>
-        ) : (
+        ) : seccion === 'pacientes' ? (
           <Pacientes />
-        )}
+        ) : seccion === 'historias' ? (
+          <Historias />
+        ) : null}
       </main>
     </div>
   )
