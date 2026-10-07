@@ -17,6 +17,8 @@ function Historias() {
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
   const [mostrarHistoria, setMostrarHistoria] = useState(false)
   const [historiaSeleccionada, setHistoriaSeleccionada] = useState(null)
+  const [modoEdicion, setModoEdicion] = useState(false)
+  const [historiaEditando, setHistoriaEditando] = useState(null)
 
   const [guardando, setGuardando] = useState(false)
   const [mensajeFormulario, setMensajeFormulario] = useState('')
@@ -68,6 +70,8 @@ function Historias() {
     setPacienteSeleccionado('')
     setMensajeModal('')
     setMensajeFormulario('')
+    setModoEdicion(false)
+    setHistoriaEditando(null)
 
     setFormulario({
       motivo_consulta: '',
@@ -123,16 +127,26 @@ function Historias() {
       setGuardando(true)
       setMensajeFormulario('')
 
-      await api.post('/api/historias/', {
-        paciente: Number(pacienteSeleccionado),
+      const datosHistoria = {
+        paciente: modoEdicion
+          ? historiaEditando.paciente
+          : Number(pacienteSeleccionado),
         ...formulario,
-      })
+      }
+
+      if (modoEdicion && historiaEditando) {
+        await api.patch(`/api/historias/${historiaEditando.id}/`, datosHistoria)
+      } else {
+        await api.post('/api/historias/', datosHistoria)
+      }
 
       setMostrarFormulario(false)
 
       await cargarHistorias()
 
       setPacienteSeleccionado('')
+      setModoEdicion(false)
+      setHistoriaEditando(null)
 
       setFormulario({
         motivo_consulta: '',
@@ -172,6 +186,29 @@ function Historias() {
   const verHistoria = (historia) => {
     setHistoriaSeleccionada(historia)
     setMostrarHistoria(true)
+  }
+
+  const editarHistoria = async (historia) => {
+    await cargarPacientes()
+
+    setPacienteSeleccionado(String(historia.paciente))
+    setHistoriaEditando(historia)
+    setModoEdicion(true)
+    setMostrarHistoria(false)
+    setMensajeFormulario('')
+
+    setFormulario({
+      motivo_consulta: historia.motivo_consulta || '',
+      antecedentes_medicos: historia.antecedentes_medicos || '',
+      alergias: historia.alergias || '',
+      medicamentos_actuales: historia.medicamentos_actuales || '',
+      antecedentes_odontologicos: historia.antecedentes_odontologicos || '',
+      habitos: historia.habitos || '',
+      diagnostico: historia.diagnostico || '',
+      observaciones: historia.observaciones || '',
+    })
+
+    setMostrarFormulario(true)
   }
 
   const cerrarHistoria = () => {
@@ -362,14 +399,25 @@ function Historias() {
       )}
 
       {/* MODAL: CREAR HISTORIA */}
-
       {mostrarFormulario && (
-        <div className="modal-overlay">
-          <div className="modal-contenido modal-historia">
+        <div
+          className="modal-overlay"
+          onClick={() => setMostrarFormulario(false)}
+        >
+          <div
+            className="modal-contenido modal-historia"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="modal-header">
               <div>
-                <h2>Historia clínica</h2>
-                <p>Completa la información clínica del paciente.</p>
+                <h2>
+                  {modoEdicion ? 'Editar historia clínica' : 'Historia clínica'}
+                </h2>
+                <p>
+                  {modoEdicion
+                    ? 'Modifica la información clínica del paciente.'
+                    : 'Completa la información clínica del paciente.'}
+                </p>
               </div>
 
               <button
@@ -665,6 +713,13 @@ function Historias() {
             <div className="modal-footer">
               <button className="btn-cancelar" onClick={cerrarHistoria}>
                 Cerrar
+              </button>
+
+              <button
+                className="btn-guardar"
+                onClick={() => editarHistoria(historiaSeleccionada)}
+              >
+                Editar historia
               </button>
             </div>
           </div>

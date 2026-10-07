@@ -40,9 +40,16 @@ class HistoriaClinicaSerializer(serializers.ModelSerializer):
         ]
 
     def validate_paciente(self, paciente):
-        if HistoriaClinica.objects.filter(
+        historias = HistoriaClinica.objects.filter(
             paciente=paciente
-        ).exists():
+        )
+
+        if self.instance:
+            historias = historias.exclude(
+                pk=self.instance.pk
+            )
+
+        if historias.exists():
             raise serializers.ValidationError(
                 'Este paciente ya tiene una historia clínica registrada.'
             )
